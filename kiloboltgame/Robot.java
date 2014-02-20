@@ -50,7 +50,7 @@ public class Robot {
 			centerY = GROUND;
 		}
 
-		// Handle Jumping
+		// Handles Jumping
 		if (jumped == true) {
 			speedY += 1;
 

@@ -14,7 +14,8 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 
 	private Robot robot;
 	private Heliboy hb, hb2;
-	private Image image, currentSprite, character, characterDown, characterJumped, background, heliboy;
+	private Image image, currentSprite, character, characterDown,
+			characterJumped, background, heliboy;
 	private Graphics second;
 	private URL base;
 	private static Background bg1, bg2;
@@ -41,9 +42,8 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 		characterDown = getImage(base, "data/down.png");
 		characterJumped = getImage(base, "data/umped.png");
 		currentSprite = character;
-		background = getImage(base, "data/background.png");
 		heliboy = getImage(base, "data/heliboy.png");
-
+		background = getImage(base, "data/background.png");
 	}
 
 	@Override
@@ -170,6 +170,8 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 			if ((robot.isDucked()==false) && (robot.isJumped() == false)) {
 				robot.shoot();
 			}
+			break;
+
 		}
 	}
 

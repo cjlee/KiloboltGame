@@ -1,12 +1,15 @@
 package kiloboltgame;
 
+import java.util.ArrayList;
+
 public class Robot {
-    // Constants are Here
-    final int JUMPSPEED = -15;
-    final int MOVESPEED = 5;
-    final int GROUND = 382;
-	
-	//In Java, Class Variables should be private so that only its methods can change them.
+	// Constants are Here
+	final int JUMPSPEED = -15;
+	final int MOVESPEED = 5;
+	final int GROUND = 382;
+
+	// In Java, Class Variables should be private so that only its methods can
+	// change them.
 	private int centerX = 100;
 	private int centerY = GROUND;
 	private boolean jumped = false;
@@ -16,22 +19,23 @@ public class Robot {
 
 	private int speedX = 0;
 	private int speedY = 1;
-	
+
 	private Background bg1 = StartingClass.getBg1();
 	private Background bg2 = StartingClass.getBg2();
-	
-	
+
+	private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
+
 	public void update() {
 		// Moves Character or Scrolls Background accordingly.
 		if (speedX < 0) {
-			 centerX += speedX;
+			centerX += speedX;
 		}
 		if ((speedX == 0) || (speedX < 0)) {
-//			System.out.println("Do not scroll the background");
+			// System.out.println("Do not scroll the background");
 			bg1.setSpeedX(0);
 			bg2.setSpeedX(0);
-		} 
-		
+		}
+
 		if ((centerX <= 200) && (speedX > 0)) {
 			centerX += speedX;
 		}
@@ -39,36 +43,36 @@ public class Robot {
 			bg1.setSpeedX(-MOVESPEED);
 			bg2.setSpeedX(-MOVESPEED);
 		}
-			
+
 		// Updates Y Position
 		centerY += speedY;
 		if (centerY + speedY >= GROUND) {
 			centerY = GROUND;
 		}
-		
+
 		// Handle Jumping
 		if (jumped == true) {
 			speedY += 1;
-			
+
 			if (centerY + speedY >= GROUND) {
 				centerY = GROUND;
 				speedY = 0;
 				jumped = false;
 			}
 		}
-		
+
 		// Prevent going beyond X coordinate of 0
 		if (centerX + speedX <= 60) {
 			centerX = 61;
 		}
 	}
-	 
+
 	public void moveRight() {
 		if (ducked == false) {
 			speedX = MOVESPEED;
 		}
 	}
-	
+
 	public void moveLeft() {
 		if (ducked == false) {
 			speedX = -MOVESPEED;
@@ -79,7 +83,7 @@ public class Robot {
 		setMovingRight(false);
 		stop();
 	}
-	
+
 	public void stopLeft() {
 		setMovingLeft(false);
 		stop();
@@ -99,7 +103,7 @@ public class Robot {
 		}
 
 	}
-	
+
 	public void jump() {
 		if (jumped == false) {
 			speedY = JUMPSPEED;
@@ -107,6 +111,11 @@ public class Robot {
 		}
 	}
 
+	public void shoot() {
+		Projectile p = new Projectile(centerX + 50, centerY - 25);
+		projectiles.add(p);
+	}
+	
 	public int getCenterX() {
 		return centerX;
 	}
@@ -146,20 +155,18 @@ public class Robot {
 	public void setSpeedY(int speedY) {
 		this.speedY = speedY;
 	}
-	
+
 	public boolean isDucked() {
 		return ducked;
 	}
-	
+
 	public void setDucked(boolean ducked) {
 		this.ducked = ducked;
 	}
 
-
 	public boolean isMovingRight() {
 		return movingRight;
 	}
-
 
 	public void setMovingRight(boolean movingRight) {
 		this.movingRight = movingRight;
@@ -171,6 +178,10 @@ public class Robot {
 
 	public void setMovingLeft(boolean movingLeft) {
 		this.movingLeft = movingLeft;
+	}
+
+	public ArrayList<Projectile> getProjectiles() {
+		return projectiles;
 	}
 
 }

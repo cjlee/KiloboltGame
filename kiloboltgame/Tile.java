@@ -6,6 +6,7 @@ public class Tile {
 
 	private int tileX, tileY, speedX, type;
 	public Image tileImage;
+
 	private Background bg = StartingClass.getBg1();
 
 	public Tile(int x, int y, int typeInt) {
@@ -14,11 +15,18 @@ public class Tile {
 
 		type = typeInt;
 
-		if (type == 1) {
-			tileImage = StartingClass.tileocean;
-		} else if (type == 2) {
-
+		if (type == 5) {
 			tileImage = StartingClass.tiledirt;
+		} else if (type == 8) {
+			tileImage = StartingClass.tilegrassTop;
+		} else if (type == 4) {
+			tileImage = StartingClass.tilegrassLeft;
+
+		} else if (type == 6) {
+			tileImage = StartingClass.tilegrassRight;
+
+		} else if (type == 2) {
+			tileImage = StartingClass.tilegrassBot;
 		}
 
 	}
@@ -33,6 +41,7 @@ public class Tile {
 		} else {
 			speedX = bg.getSpeedX() * 5;
 		}
+
 		tileX += speedX;
 	}
 

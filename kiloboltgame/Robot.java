@@ -36,10 +36,10 @@ public class Robot {
 			bg2.setSpeedX(0);
 		}
 
-		if ((centerX <= 200) && (speedX > 0)) {
+		if ((centerX <= 400) && (speedX > 0)) {	// CJL: 200==> 400
 			centerX += speedX;
 		}
-		if ((speedX > 0) && (centerX > 200)) {
+		if ((speedX > 0) && (centerX > 400)) {	// cjl: 200 ==> 400
 			bg1.setSpeedX(-MOVESPEED);
 			bg2.setSpeedX(-MOVESPEED);
 		}

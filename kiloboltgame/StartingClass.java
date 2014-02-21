@@ -46,8 +46,8 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 		character3 = getImage(base, "data/character3.png");
 
 		characterDown = getImage(base, "data/down.png");
-		characterJumped = getImage(base, "data/umped.png");
-		currentSprite = character;
+		characterJumped = getImage(base, "data/jumped.png");
+
 		heliboy = getImage(base, "data/heliboy.png");
 		heliboy2 = getImage(base, "data/heliboy2.png");
 		heliboy3 = getImage(base, "data/heliboy3.png");

@@ -6,19 +6,20 @@ public class Robot {
 	// Constants are Here
 	final int JUMPSPEED = -15;
 	final int MOVESPEED = 5;
-	final int GROUND = 382;
+//	final int GROUND = 382;
 
 	// In Java, Class Variables should be private so that only its methods can
 	// change them.
 	private int centerX = 100;
-	private int centerY = GROUND;
+	private int centerY = 377;   // ToDo cjl 140222: Ground ==> 377
 	private boolean jumped = false;
 	private boolean movingLeft = false;
 	private boolean movingRight = false;
 	private boolean ducked = false;
+	private boolean readyToFire = true;
 
 	private int speedX = 0;
-	private int speedY = 1;
+	private int speedY = 0;
 
 	private Background bg1 = StartingClass.getBg1();
 	private Background bg2 = StartingClass.getBg2();
@@ -36,29 +37,30 @@ public class Robot {
 			bg2.setSpeedX(0);
 		}
 
-		if ((centerX <= 400) && (speedX > 0)) {	// CJL: 200==> 400
+		if ((centerX <= 400) && (speedX > 0)) { // CJL: 200==> 400
 			centerX += speedX;
 		}
-		if ((speedX > 0) && (centerX > 400)) {	// cjl: 200 ==> 400
+		if ((speedX > 0) && (centerX > 400)) { // cjl: 200 ==> 400
 			bg1.setSpeedX(-MOVESPEED);
 			bg2.setSpeedX(-MOVESPEED);
 		}
 
 		// Updates Y Position
 		centerY += speedY;
-		if (centerY + speedY >= GROUND) {
-			centerY = GROUND;
-		}
+//		if (centerY + speedY >= GROUND) {
+//			centerY = GROUND;
+//		}
 
 		// Handles Jumping
 		if (jumped == true) {
 			speedY += 1;
-
+/*
 			if (centerY + speedY >= GROUND) {
 				centerY = GROUND;
 				speedY = 0;
 				jumped = false;
 			}
+*/		
 		}
 
 		// Prevent going beyond X coordinate of 0
@@ -112,10 +114,13 @@ public class Robot {
 	}
 
 	public void shoot() {
-		Projectile p = new Projectile(centerX + 50, centerY - 25);
-		projectiles.add(p);
+		if (readyToFire == true) {
+
+			Projectile p = new Projectile(centerX + 50, centerY - 25);
+			projectiles.add(p);
+		}
 	}
-	
+
 	public int getCenterX() {
 		return centerX;
 	}
@@ -182,6 +187,14 @@ public class Robot {
 
 	public ArrayList<Projectile> getProjectiles() {
 		return projectiles;
+	}
+
+	public boolean isReadyToFire() {
+		return readyToFire;
+	}
+
+	public void setReadyToFire(boolean readyToFire) {
+		this.readyToFire = readyToFire;
 	}
 
 }

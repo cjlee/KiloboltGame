@@ -8,7 +8,7 @@ public class Enemy {
 	// Behavioral Methods
 	public void update() {
 		centerX += speedX;
-		speedX = bg.getSpeedX();
+		speedX = bg.getSpeedX()*5;  // cjl, check it
 
 	}
 
@@ -75,4 +75,6 @@ public class Enemy {
 	public void setBg(Background bg) {
 		this.bg = bg;
 	}
+
+	
 }

@@ -243,6 +243,15 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 			g.fillRect(p.getX(), p.getY(), 10, 5);
 		}
 
+		
+		// Testing robot rect.
+		g.drawRect((int)robot.rect.getX(), (int)robot.rect.getY(), (int)robot.rect.getWidth(), (int)robot.rect.getHeight());
+		g.drawRect((int)robot.rect2.getX(), (int)robot.rect2.getY(), (int)robot.rect2.getWidth(), (int)robot.rect2.getHeight());
+		g.drawRect((int)robot.rect3.getX(), (int)robot.rect3.getY(), (int)robot.rect3.getWidth(), (int)robot.rect3.getHeight());
+		g.drawRect((int)robot.rect4.getX(), (int)robot.rect4.getY(), (int)robot.rect4.getWidth(), (int)robot.rect4.getHeight());
+		g.drawRect((int)robot.footleft.getX(), (int)robot.footleft.getY(), (int)robot.footleft.getWidth(), (int)robot.footleft.getHeight());
+		g.drawRect((int)robot.footright.getX(), (int)robot.footright.getY(), (int)robot.footright.getWidth(), (int)robot.footright.getHeight());
+		
 		g.drawImage(currentSprite, robot.getCenterX() - 61,
 				robot.getCenterY() - 63, this);
 		g.drawImage(hanim.getImage(), hb.getCenterX() - 48,
@@ -294,7 +303,8 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
 			robot.jump();
 			break;
 		case KeyEvent.VK_CONTROL:
-			if ((robot.isDucked() == false) && (robot.isJumped() == false)) {
+			if (robot.isDucked() == false && robot.isJumped() == false
+					&& robot.isReadyToFire()) {
 				robot.shoot();
 				robot.setReadyToFire(false);
 			}

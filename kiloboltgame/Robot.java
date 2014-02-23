@@ -1,5 +1,6 @@
 package kiloboltgame;
 
+import java.awt.Rectangle;
 import java.util.ArrayList;
 
 public class Robot {
@@ -20,7 +21,16 @@ public class Robot {
 
 	private int speedX = 0;
 	private int speedY = 0;
-
+	public static Rectangle rect = new Rectangle(0, 0, 0, 0);
+	public static Rectangle rect2 = new Rectangle(0, 0, 0, 0);
+	public static Rectangle rect3 = new Rectangle(0, 0, 0, 0);
+	public static Rectangle rect4 = new Rectangle(0, 0, 0, 0);
+	public static Rectangle yellowRed = new Rectangle(0, 0, 0, 0);
+	
+	public static Rectangle footleft = new Rectangle(0,0,0,0);
+	public static Rectangle footright = new Rectangle(0,0,0,0);
+	
+	
 	private Background bg1 = StartingClass.getBg1();
 	private Background bg2 = StartingClass.getBg2();
 
@@ -28,6 +38,7 @@ public class Robot {
 
 	public void update() {
 		// Moves Character or Scrolls Background accordingly.
+
 		if (speedX < 0) {
 			centerX += speedX;
 		}
@@ -40,9 +51,9 @@ public class Robot {
 		if ((centerX <= 400) && (speedX > 0)) { // CJL: 200==> 400
 			centerX += speedX;
 		}
-		if ((speedX > 0) && (centerX > 400)) { // cjl: 200 ==> 400
-			bg1.setSpeedX(-MOVESPEED);
-			bg2.setSpeedX(-MOVESPEED);
+		if (speedX > 0 && centerX > 400) {
+			bg1.setSpeedX(-MOVESPEED / 5);
+			bg2.setSpeedX(-MOVESPEED / 5);
 		}
 
 		// Updates Y Position
@@ -52,21 +63,28 @@ public class Robot {
 //		}
 
 		// Handles Jumping
-		if (jumped == true) {
+
 			speedY += 1;
-/*
-			if (centerY + speedY >= GROUND) {
-				centerY = GROUND;
-				speedY = 0;
-				jumped = false;
-			}
-*/		
+
+		if (speedY > 3){
+			jumped = true;
 		}
 
 		// Prevent going beyond X coordinate of 0
 		if (centerX + speedX <= 60) {
 			centerX = 61;
 		}
+
+		rect.setRect(centerX - 34, centerY - 63, 68, 63);
+		rect2.setRect(rect.getX(), rect.getY() + 63, 68, 63);
+		rect3.setRect(rect.getX() - 26, rect.getY()+32, 26, 20);
+		rect4.setRect(rect.getX() + 68, rect.getY()+32, 26, 20);
+		yellowRed.setRect(centerX - 110, centerY - 110, 180, 180);
+
+		footleft.setRect(centerX - 50, centerY + 20, 50, 15);
+		footright.setRect(centerX, centerY + 20, 50, 15);
+
+
 	}
 
 	public void moveRight() {

@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 
 public class Robot {
+
 	// Constants are Here
 	final int JUMPSPEED = -15;
 	final int MOVESPEED = 5;

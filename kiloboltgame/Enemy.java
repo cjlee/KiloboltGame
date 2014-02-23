@@ -4,9 +4,10 @@ import java.awt.Rectangle;
 
 public class Enemy {
 
-	private int maxHealth, currentHealth, power, speedX, centerX, centerY;
+	private int power, speedX, centerX, centerY;
 	private Background bg = StartingClass.getBg1();
 	public Rectangle r = new Rectangle(0, 0, 0, 0);
+	public int health = 5;
 
 	// Behavioral Methods
 	public void update() {
@@ -33,14 +34,6 @@ public class Enemy {
 
 	}
 
-	public int getMaxHealth() {
-		return maxHealth;
-	}
-
-	public int getCurrentHealth() {
-		return currentHealth;
-	}
-
 	public int getPower() {
 		return power;
 	}
@@ -59,14 +52,6 @@ public class Enemy {
 
 	public Background getBg() {
 		return bg;
-	}
-
-	public void setMaxHealth(int maxHealth) {
-		this.maxHealth = maxHealth;
-	}
-
-	public void setCurrentHealth(int currentHealth) {
-		this.currentHealth = currentHealth;
 	}
 
 	public void setPower(int power) {
